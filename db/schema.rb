@@ -36,21 +36,21 @@ ActiveRecord::Schema.define(version: 2020_09_12_080721) do
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
     t.bigint "user_id"
-    t.bigint "protospace_id"
+    t.bigint "prototype_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["protospace_id"], name: "index_comments_on_protospace_id"
+    t.index ["prototype_id"], name: "index_comments_on_prototype_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "protospaces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "prototypes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "catch_copy", null: false
     t.text "concept", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_protospaces_on_user_id"
+    t.index ["user_id"], name: "index_prototypes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_09_12_080721) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "protospaces"
+  add_foreign_key "comments", "prototypes"
   add_foreign_key "comments", "users"
-  add_foreign_key "protospaces", "users"
+  add_foreign_key "prototypes", "users"
 end
